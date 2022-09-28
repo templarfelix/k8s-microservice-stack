@@ -33,7 +33,7 @@ spec:
       project: default
       source:
         path: _custom/apps/microservices/_cluster-resources
-        repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+        repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
         directory:
           recurse: true
       syncPolicy:

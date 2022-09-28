@@ -3,7 +3,7 @@
   "userGivenName": "strimzi",
   "destNamespace": "kafka",
   "srcPath": "_custom/apps/kafka/strimzi/",
-  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
   "srcTargetRevision": "",
   "labels": null,
   "annotations": null

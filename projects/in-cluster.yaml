@@ -37,7 +37,7 @@ spec:
   - git:
       files:
       - path: apps\**\in-cluster\config.json
-      repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+      repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
       requeueAfterSeconds: 20
       revision: ""
       template:
@@ -50,7 +50,7 @@ spec:
   - git:
       files:
       - path: apps\**\in-cluster\config_dir.json
-      repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+      repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
       requeueAfterSeconds: 20
       revision: ""
       template:

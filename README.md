@@ -46,18 +46,23 @@ vagrant ssh client-demo-us-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.
 export KUBECONFIG=$(find ~/.kube/clusters -type f | sed ':a;N;s/\n/:/;ba')
 ```
 
-# INSTALL ARGOCD USING AUTOPILOT
+# INSTALL THIS PROJECT USING ARGOCD AUTOPILOT
+
+for this you need 2 env's GIT_TOKEN AND GIT_REPO more detail in: https://argocd-autopilot.readthedocs.io/en/stable/Getting-Started/
+
+GIT_REPO = YOUR FORK OF THIS PROJECT
+
 ```bash
 # recovery
 argocd-autopilot repo bootstrap  --recover --kubeconfig  ~/.kube/clusters/argo.config
 
 # add current clusters
-argocd-autopilot project create infra --dest-kube-context infra --port-forward --port-forward-namespace argocd --name infra --repo https://github.com/templarfelix-org/argocd-autopilot.git --yes
-argocd-autopilot project create client1-sa-east-1 --dest-kube-context client1-sa-east-1 --port-forward --port-forward-namespace argocd --name client1-sa-east-1 --repo https://github.com/templarfelix-org/argocd-autopilot.git --yes
-argocd-autopilot project create client1-us-east-1 --dest-kube-context client1-us-east-1 --port-forward --port-forward-namespace argocd --name client1-us-east-1 --repo https://github.com/templarfelix-org/argocd-autopilot.git --yes
+argocd-autopilot project create infra --dest-kube-context infra --port-forward --port-forward-namespace argocd --name infra --repo https://github.com/templarfelix-org/k8s-microservice-stack.git --yes
+argocd-autopilot project create client1-sa-east-1 --dest-kube-context client1-sa-east-1 --port-forward --port-forward-namespace argocd --name client1-sa-east-1 --repo https://github.com/templarfelix-org/k8s-microservice-stack.git --yes
+argocd-autopilot project create client1-us-east-1 --dest-kube-context client1-us-east-1 --port-forward --port-forward-namespace argocd --name client1-us-east-1 --repo https://github.com/templarfelix-org/k8s-microservice-stack.git --yes
 
 # add new clusters
-argocd-autopilot project create **CLUSTER** --dest-kube-context **CLUSTER** --port-forward --port-forward-namespace argocd --name **CLUSTER** --repo https://github.com/templarfelix-org/argocd-autopilot.git
+argocd-autopilot project create **CLUSTER** --dest-kube-context **CLUSTER** --port-forward --port-forward-namespace argocd --name **CLUSTER** --repo https://github.com/templarfelix-org/k8s-microservice-stack.git
 
 
 ```

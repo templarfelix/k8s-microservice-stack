@@ -11,7 +11,7 @@ spec:
   - git:
       files:
       - path: bootstrap/cluster-resources/*.json
-      repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+      repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
       requeueAfterSeconds: 20
       revision: ""
       template:
@@ -41,7 +41,7 @@ spec:
       project: default
       source:
         path: bootstrap/cluster-resources/{{name}}
-        repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+        repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
         directory:
           recurse: true
       syncPolicy:

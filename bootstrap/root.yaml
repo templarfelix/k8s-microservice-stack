@@ -21,7 +21,7 @@ spec:
   project: default
   source:
     path: projects
-    repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+    repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
   syncPolicy:
     automated:
       allowEmpty: true

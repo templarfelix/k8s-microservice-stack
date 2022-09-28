@@ -43,7 +43,7 @@ spec:
         - git:
             files:
             - path: _custom/apps/3rd/**/config.json
-            repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+            repoURL: https://github.com/templarfelix-org/k8s-microservice-stack.git
             requeueAfterSeconds: 20
             revision: ""
             template:

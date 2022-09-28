@@ -3,7 +3,7 @@
   "userGivenName": "templarfelix-operator",
   "destNamespace": "operator-system",
   "srcPath": "_custom/apps/microservices/templarfelix-operator/",
-  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
   "srcTargetRevision": "",
   "labels": null,
   "annotations": null
