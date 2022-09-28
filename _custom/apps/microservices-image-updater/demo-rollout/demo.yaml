@@ -1,0 +1,64 @@
+apiVersion: charts.templarfelix.com/v1alpha1
+kind: RolloutDeployment
+metadata:
+  name: rolloutdeployment-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/rollout/values.yaml
+  domain: templarfelix.com
+  env: {}
+  envFrom: {}
+  environment: sandbox
+  health:
+    enabled: true
+    livenessInitialDelay: 30
+    path: /q/health/live
+    readinessInitialDelay: 60
+  hpa:
+    enabled: false
+    maxReplicas: 2
+    minReplicas: 1
+  image:
+    imagePullPolicy: Always
+    registry: docker.io
+    repository: templarfelix/complete-mircoservice-stack
+    tag: latest
+  istio:
+    virtualService:
+      customHeaders: {}
+  owner: foo
+  pod:
+    annotations: {}
+  ports:
+    http: 8080
+  replicas: 1
+  resources: {}
+  revisionHistoryLimit: 10
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: null
+  strategy:
+    canary:
+      analysis:
+        templates: {}
+      steps:
+      - setWeight: 0
+      - setCanaryScale:
+          replicas: 1
+      - pause: {}
+      - setWeight: 10
+      - setCanaryScale:
+          weight: 10
+      - pause:
+          duration: 20m
+      - setWeight: 80
+      - setCanaryScale:
+          weight: 80
+      - pause:
+          duration: 20m
+      - setWeight: 100
+      - setCanaryScale:
+          weight: 100
+      - pause:
+          duration: 10m
+  version: 0.0.1

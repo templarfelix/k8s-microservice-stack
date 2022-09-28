@@ -1,0 +1,10 @@
+{
+  "appName": "templarfelix-operator",
+  "userGivenName": "templarfelix-operator",
+  "destNamespace": "operator-system",
+  "srcPath": "_custom/apps/microservices/templarfelix-operator/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

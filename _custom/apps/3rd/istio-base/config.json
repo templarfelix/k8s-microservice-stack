@@ -1,0 +1,10 @@
+{
+  "appName": "istio-base",
+  "userGivenName": "istio-base",
+  "destNamespace": "istio-system",
+  "srcPath": "_custom/apps/3rd/istio-base/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

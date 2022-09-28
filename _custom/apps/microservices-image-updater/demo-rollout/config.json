@@ -1,0 +1,12 @@
+{
+  "appName": "demo-rollout",
+  "userGivenName": "demo-rollout",
+  "destNamespace": "microservices",
+  "srcPath": "_custom/apps/microservices-image-updater/demo-rollout/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": {
+    "image_list": "image=docker.io/templarfelix/complete-mircoservice-stack"
+  }
+}

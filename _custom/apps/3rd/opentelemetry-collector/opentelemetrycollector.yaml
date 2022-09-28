@@ -1,0 +1,27 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: opentelemetry
+spec:
+  mode: daemonset 
+  image: otel/opentelemetry-collector-contrib:0.56.0
+  config: |
+    receivers:
+      zipkin:
+      opencensus:
+      otlp:
+        protocols:
+          grpc:
+          http:
+          
+    processors:
+
+    exporters:
+      logging:
+
+    service:
+      pipelines:
+        traces:
+          receivers: [zipkin, opencensus, otlp]
+          processors: []
+          exporters: [logging]

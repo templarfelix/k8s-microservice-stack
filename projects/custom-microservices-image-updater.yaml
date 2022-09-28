@@ -1,0 +1,89 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: PruneLast=true
+    argocd.argoproj.io/sync-wave: "-2"
+  creationTimestamp: null
+  name: microservices-image-updater
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: microservices-image-updater project
+  destinations:
+  - namespace: '*'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos:
+  - '*'
+status: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  creationTimestamp: null
+  name: microservices-image-updater
+  namespace: argocd
+spec:
+  generators:
+  - matrix:
+      generators:
+        - clusters:
+            selector:
+              matchLabels:
+                argocd.argoproj.io/secret-type: cluster
+                templarfelix/microservices: "true"
+        - git:
+            files:
+            - path: _custom/apps/microservices-image-updater/**/config.json
+            repoURL: https://github.com/templarfelix-org/argocd-autopilot.git
+            requeueAfterSeconds: 20
+            revision: ""
+            template:
+              metadata: {}
+              spec:
+                destination: {}
+                project: ""
+                source:
+                  repoURL: ""
+  syncPolicy: {}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: argocd-autopilot
+        app.kubernetes.io/name: '{{ appName }}'
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: '{{ annotations.image_list }}'
+        argocd-image-updater.argoproj.io/image.update-strategy: latest
+        #argocd-image-updater.argoproj.io/image.force-update: "true"
+        #argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds           
+        #argocd-image-updater.argoproj.io/git-branch: main
+      name: microservices-image-updater-{{name}}-{{ userGivenName }}
+      namespace: argocd
+    spec:
+      destination:
+        namespace: '{{ destNamespace }}'
+        server: '{{ server }}'
+      ignoreDifferences:
+      - group: argoproj.io
+        jsonPointers:
+        - /status
+        kind: Application
+      project: microservices
+      source:
+        path: '{{ srcPath }}'
+        repoURL: '{{ srcRepoURL }}'
+        targetRevision: '{{ srcTargetRevision }}'
+      syncPolicy:
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: true
+status: {}

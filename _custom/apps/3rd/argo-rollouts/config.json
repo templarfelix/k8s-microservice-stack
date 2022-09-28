@@ -1,0 +1,10 @@
+{
+  "appName": "argo-rollouts",
+  "userGivenName": "argo-rollouts",
+  "destNamespace": "argo-rollouts",
+  "srcPath": "_custom/apps/3rd/argo-rollouts/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

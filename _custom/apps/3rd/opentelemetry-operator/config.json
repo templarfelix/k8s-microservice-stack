@@ -1,0 +1,10 @@
+{
+  "appName": "opentelemetry-operator",
+  "userGivenName": "opentelemetry-operator",
+  "destNamespace": "opentelemetry-operator",
+  "srcPath": "_custom/apps/3rd/opentelemetry-operator/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

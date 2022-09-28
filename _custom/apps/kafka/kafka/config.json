@@ -1,0 +1,10 @@
+{
+  "appName": "kafka",
+  "userGivenName": "kafka",
+  "destNamespace": "kafka",
+  "srcPath": "_custom/apps/kafka/kafka/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

@@ -1,0 +1,10 @@
+{
+  "appName": "argo-events",
+  "userGivenName": "argo-events",
+  "destNamespace": "argo-events",
+  "srcPath": "_custom/apps/3rd/argo-events/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

@@ -1,0 +1,10 @@
+{
+  "appName": "keda",
+  "userGivenName": "keda",
+  "destNamespace": "keda",
+  "srcPath": "_custom/apps/3rd/keda/",
+  "srcRepoURL": "https://github.com/templarfelix-org/argocd-autopilot.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}
