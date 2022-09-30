@@ -8,9 +8,16 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
 
+
+
   config.vm.box = "alvistack/kubernetes-1.25"
   config.nfs.verify_installed = false
   config.vm.synced_folder '.', '/vagrant', type: 'rsync', rsync__exclude: ".git/", disabled: false
+
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.management_network_name = "argo"
+    libvirt.management_network_address = "192.169.0.0/16"
+	end
 
   config.vm.define "argo" do |argo|
 
@@ -29,8 +36,6 @@ Vagrant.configure("2") do |config|
       libvirt.nic_model_type = 'virtio'
       libvirt.storage :file, bus: 'virtio', cache: 'writeback'
       libvirt.video_type = 'virtio'
-      libvirt.management_network_name = "argo"
-      libvirt.management_network_address = "192.168.101.0/24"
       
     end
 
@@ -53,8 +58,6 @@ Vagrant.configure("2") do |config|
       libvirt.nic_model_type = 'virtio'
       libvirt.storage :file, bus: 'virtio', cache: 'writeback'
       libvirt.video_type = 'virtio'
-      libvirt.management_network_name = "infra"
-      libvirt.management_network_address = "192.168.102.0/24"
     end
 
   end 
@@ -76,8 +79,6 @@ Vagrant.configure("2") do |config|
       libvirt.nic_model_type = 'virtio'
       libvirt.storage :file, bus: 'virtio', cache: 'writeback'
       libvirt.video_type = 'virtio'
-      libvirt.management_network_name = "client-demo-sa-east-1"
-      libvirt.management_network_address = "192.168.103.0/24"
     end
 
   end 
@@ -99,8 +100,8 @@ Vagrant.configure("2") do |config|
       libvirt.nic_model_type = 'virtio'
       libvirt.storage :file, bus: 'virtio', cache: 'writeback'
       libvirt.video_type = 'virtio'
-      libvirt.management_network_name = "client-demo-us-east-1"
-      libvirt.management_network_address = "192.168.104.0/24"
+      #libvirt.management_network_name = "argo"
+      #libvirt.management_network_address = "192.168.104.0/24"
     end
 
   end 
