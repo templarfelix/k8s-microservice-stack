@@ -1,16 +1,35 @@
-# POC argocd-autopilot
-A Complete Microservice Kubernetes Stack
+# k8s microservice stack
 
-**The ideia of this project is simulate 2 enviroments for one client one in US  and another in SA with ArgoCD cluster for install all applications on all enviroments, and one centralizade infra tools in this case monitoring services and kafka cluster.
-**
+## _A Complete Microservice Stack for Kubernetes_
+
+> The ideia of this project is simulate 3 enviroments 2 for clientes and one for infra tools  
+> This project use ArgoCD for install applications on enviroments  
+> cluster argo: 
+> cluster infra: receive kafka and all monitoring tools
+> clusters client-demo-sa-east-1 & client-demo-us-east-1: receive 
 
 # This project use
 
-Argo CD
-Argo Workflow
-Argo Events
+## Infra
+### Vagrant
+[Alvistack Kubernetes 1.25](https://github.com/alvistack/vagrant-kubernetes/)
 
-## ALL docs is going increase in next weeks
+### Kubernetes
+#### CD
+[ArgoCD Autopilot](https://github.com/argoproj-labs/argocd-autopilot/)
+[ArgoCD](https://github.com/argoproj/argo-cd/)
+#### Workflows
+[Argo Workflows](https://github.com/argoproj/argo-workflows/)
+#### Canary & Blue-Green
+[Argo Rollouts](https://github.com/argoproj/argo-rollouts/)
+#### Others
+[Argo Events](https://github.com/argoproj/argo-events/)
+[Cert Manager](https://github.com/cert-manager/cert-manager/)
+[External Secrets](https://github.com/external-secrets/external-secrets/)
+[Istio](https://github.com/istio/istio/)
+[Keda](https://github.com/kedacore/keda/)
+[OpentenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator/)
+[Strimzi](https://github.com/strimzi/strimzi-kafka-operator/)
 
 # pre-setup
 
