@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
   creationTimestamp: null
-  name: custom-kafka-cluster-resources
+  name: custom-microservices-cluster-resources
   namespace: argocd
 spec:
   generators:
