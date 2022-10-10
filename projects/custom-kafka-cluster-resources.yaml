@@ -12,7 +12,7 @@ spec:
       selector:
         matchLabels:
           argocd.argoproj.io/secret-type: cluster
-          templarfelix/third-party: "true"
+          templarfelix/kafka: "true"
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
