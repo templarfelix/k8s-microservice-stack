@@ -31,6 +31,10 @@
 [OpentenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator/)
 [Strimzi](https://github.com/strimzi/strimzi-kafka-operator/)
 
+ 
+### Test
+[Kafka Stress](https://github.com/msfidelis/kafka-stress)
+
 # pre-setup
 
 ## SETUP LINUX(FEDORA) FOR K8S
@@ -41,26 +45,25 @@ sudo sysctl  fs.inotify.max_user_watches=1048576
 sudo sysctl -p
 ```
 
+## INSTALL VAGRANT on FEDORA
+```bash
+sudo dnf install vagrant
+vagrant plugin install vagrant-libvirt
+```
+
 ## INSTALL libvirt ON FEDORA
 ```bash
 dependencies=$(sudo dnf repoquery --qf "%{name}" $(for dep in $(sudo dnf repoquery --depends vagrant-libvirt 2>/dev/null | cut -d' ' -f1); do echo "--whatprovides ${dep} "; done) 2>/dev/null)
 sudo dnf install @virtualization ${dependencies}
 sudo dnf remove vagrant-libvirt
 sudo systemctl enable --now libvirtd
-vagrant plugin install vagrant-libvirt
 sudo usermod -a -G libvirt $USER
-```
-
-## INSTALL VAGRANT on FEDORA
-```bash
-sudo dnf install vagrant
 ```
 
 ## SETUP ENV
 ```bash
 ## TODO
 ```
-
 
 # GET K8S CREDENTIALS
 ```bash
@@ -96,8 +99,6 @@ argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clust
 argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config  ) --name client-demo-sa-east-1 --yes --annotation cluster=client-demo-sa-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config 
 # add cluster client-demo-us-east-1
 argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config  ) --name client-demo-us-east-1 --yes --annotation cluster=client-demo-us-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config 
-
-  
 ```
 
 # recovery password from argocd admin
