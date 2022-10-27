@@ -19,11 +19,32 @@ spec:
         port: 9094
         type: loadbalancer
         tls: false
+        overrides:
+          bootstrap:
+            dnsAnnotations:
+              external-dns.alpha.kubernetes.io/hostname: kafka-bootstrap.internal.com
+              external-dns.alpha.kubernetes.io/ttl: "60"
+              external-dns.alpha.kubernetes.io/access: "private"
+          brokers:
+            - broker: 0
+              dnsAnnotations:
+                external-dns.alpha.kubernetes.io/hostname: kafka-broker-0.internal.com
+                external-dns.alpha.kubernetes.io/ttl: "60"
+                external-dns.alpha.kubernetes.io/access: "private"
+            - broker: 1
+              dnsAnnotations:
+                external-dns.alpha.kubernetes.io/hostname: kafka-broker-1.internal.com
+                external-dns.alpha.kubernetes.io/ttl: "60"
+                external-dns.alpha.kubernetes.io/access: "private"
+            - broker: 2
+              dnsAnnotations:
+                external-dns.alpha.kubernetes.io/hostname: kafka-broker-2.internal.com
+                external-dns.alpha.kubernetes.io/ttl: "60"
+                external-dns.alpha.kubernetes.io/access: "private"
       - name: extltls
         port: 9095
         type: loadbalancer
         tls: true
-
     config:
       offsets.topic.replication.factor: 3
       transaction.state.log.replication.factor: 3
