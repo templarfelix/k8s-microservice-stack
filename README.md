@@ -122,3 +122,7 @@ kubectl get secret monitoring-grafana -o jsonpath="{.data.admin-password}" --nam
 # Custom integrations
 
 REPLACE: TEMPLARFELIX_CUSTOM_* FOR YOUR INTEGRATIONS SECRETS
+
+## TODO
+ add docs about how labels work
+ 
