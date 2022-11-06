@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
     v.gui = true
     v.linked_clone = false
     v.vmx["memsize"] = "32768"
-    v.vmx["numvcpus"] = "8"
+    v.vmx["numvcpus"] = "16"
     v.vmx["cpuid.coresPerSocket"] = "2"
     v.vmx["vhv.enable"] = "TRUE"
     v.vmx["virtualhw.version"] = "19"
@@ -81,6 +81,7 @@ Vagrant.configure("2") do |config|
     pwd
     git clone https://github.com/templarfelix-org/k8s-microservice-stack.git
     cd k8s-microservice-stack
+    cd env
     vagrant plugin install vagrant-libvirt
     vagrant up
 
@@ -93,25 +94,28 @@ Vagrant.configure("2") do |config|
     vagrant ssh client-demo-sa-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-sa-east-1.config
     vagrant ssh client-demo-us-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-us-east-1.config
 
-    echo export KUBECONFIG=eval"$(find ~/.kube/clusters -type f | sed ':a;N;s/\n/:/;ba')" >> /home/vagrant/.zshrc
+    echo export KUBECONFIG="$(find ~/.kube/clusters -type f | sed ':a;N;s/\n/:/;ba')" >> /home/vagrant/.zshrc
   SHELL
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     # READY ONLY TOKEN
-    echo export GIT_TOKEN="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" >> /home/vagrant/.zshrc
+    echo export GIT_TOKEN="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" >> /home/vagrant/.zshrc
     echo export GIT_REPO="https://github.com/templarfelix-org/k8s-microservice-stack.git" >> /home/vagrant/.zshrc
   SHELL
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    /home/linuxbrew/.linuxbrew/bin/argocd-autopilot repo bootstrap  --recover --kubeconfig  ~/.kube/clusters/argo.config
+    /home/linuxbrew/.linuxbrew/bin/argocd-autopilot repo bootstrap --recover --kubeconfig  ~/.kube/clusters/argo.config --git-token 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 --repo https://github.com/templarfelix-org/k8s-microservice-stack.git
   SHELL
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    /home/linuxbrew/.linuxbrew/bin/kubectl port-forward -n argocd svc/argocd-server 8080:8080  --kubeconfig ~/.kube/clusters/argo.config
-    /home/linuxbrew/.linuxbrew/bin/argocd login localhost:8080 --username admin --password $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) --insecure
-    /home/linuxbrew/.linuxbrew/bin/argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/infra.config  ) --name infra --yes --annotation cluster=infra --label templarfelix/monitoring-server=true --label templarfelix/third-party=true --label templarfelix/kafka=true  --kubeconfig ~/.kube/clusters/infra.config  
-    /home/linuxbrew/.linuxbrew/bin/argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config  ) --name client-demo-sa-east-1 --yes --annotation cluster=client-demo-sa-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config 
-    /home/linuxbrew/.linuxbrew/bin/argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config  ) --name client-demo-us-east-1 --yes --annotation cluster=client-demo-us-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config 
+    /home/linuxbrew/.linuxbrew/bin/kubectl port-forward -n argocd svc/argocd-server 8080:80 --kubeconfig ~/.kube/clusters/argo.config & echo "argocd port open"
+  SHELL
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    /home/linuxbrew/.linuxbrew/bin/argocd login localhost:8080 --username admin --password $(/home/linuxbrew/.linuxbrew/bin/kubectl -n argocd get secret argocd-initial-admin-secret --kubeconfig ~/.kube/clusters/argo.config -o jsonpath="{.data.password}" | base64 -d) --insecure
+    /home/linuxbrew/.linuxbrew/bin/argocd cluster add $( /home/linuxbrew/.linuxbrew/bin/kubectl config current-context --kubeconfig ~/.kube/clusters/infra.config  ) --name infra --yes --annotation cluster=infra --label templarfelix/monitoring-server=true --label templarfelix/third-party=true --label templarfelix/kafka=true  --kubeconfig ~/.kube/clusters/infra.config  
+    /home/linuxbrew/.linuxbrew/bin/argocd cluster add $( /home/linuxbrew/.linuxbrew/bin/kubectl config current-context --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config  ) --name client-demo-sa-east-1 --yes --annotation cluster=client-demo-sa-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config 
+    /home/linuxbrew/.linuxbrew/bin/argocd cluster add $( /home/linuxbrew/.linuxbrew/bin/kubectl config current-context --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config  ) --name client-demo-us-east-1 --yes --annotation cluster=client-demo-us-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config 
   SHELL
 
 end
