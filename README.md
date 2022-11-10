@@ -92,8 +92,8 @@ kubectl port-forward -n argocd svc/argocd-server 8080:8080  --kubeconfig ~/.kube
 # login with argo cli
 argocd login localhost:8080 --username admin --password $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) --insecure
 
-# add cluster infra with monitoring-server thirdy-party  and kafka
-argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/infra.config  ) --name infra --yes --annotation cluster=infra --label templarfelix/monitoring-server=true --label templarfelix/third-party=true --label templarfelix/kafka=true  --kubeconfig ~/.kube/clusters/infra.config 
+# add cluster infra with monitoring-server basic and kafka
+argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/infra.config  ) --name infra --yes --annotation cluster=infra --label templarfelix/monitoring-server=true --label templarfelix/basic=true --label templarfelix/kafka=true  --kubeconfig ~/.kube/clusters/infra.config 
 
 # add cluster client-demo-sa-east-1
 argocd cluster add $( kubectl config current-context  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config  ) --name client-demo-sa-east-1 --yes --annotation cluster=client-demo-sa-east-1 --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config 
@@ -108,7 +108,9 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 # label availables for argo clusters
 ```bash
+templarfelix/basic="true" 
 templarfelix/monitoring-server="true"
+templarfelix/monitoring-client="true"
 templarfelix/third-party="true" 
 templarfelix/kafka="true"
 templarfelix/microservices="true" 

@@ -1,0 +1,10 @@
+{
+  "appName": "istio-cni",
+  "userGivenName": "istio-cni",
+  "destNamespace": "kube-system",
+  "srcPath": "_custom/apps/3rd/istio-cni/",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}

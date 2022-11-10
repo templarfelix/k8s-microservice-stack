@@ -5,5 +5,5 @@ helmCharts:
   namespace: istio-ingress
   includeCRDs: true
   releaseName: istio-ingressgateway
-  version: 1.15.1
+  version: 1.15.3
   repo: https://istio-release.storage.googleapis.com/charts
