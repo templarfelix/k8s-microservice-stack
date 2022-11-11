@@ -2,7 +2,7 @@
   "appName": "external-secrets",
   "userGivenName": "external-secrets",
   "destNamespace": "external-secrets",
-  "srcPath": "_custom/apps/3rd/external-secrets/",
+  "srcPath": "_custom/apps/basic/external-secrets/",
   "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
   "srcTargetRevision": "",
   "labels": null,

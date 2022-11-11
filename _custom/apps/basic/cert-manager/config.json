@@ -2,7 +2,7 @@
   "appName": "cert-manager",
   "userGivenName": "cert-manager",
   "destNamespace": "cert-manager",
-  "srcPath": "_custom/apps/3rd/cert-manager/",
+  "srcPath": "_custom/apps/basic/cert-manager/",
   "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
   "srcTargetRevision": "",
   "labels": null,

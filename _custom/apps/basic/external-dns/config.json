@@ -2,7 +2,7 @@
   "appName": "external-dns",
   "userGivenName": "external-dns",
   "destNamespace": "external-dns",
-  "srcPath": "_custom/apps/3rd/external-dns/",
+  "srcPath": "_custom/apps/basic/external-dns/",
   "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
   "srcTargetRevision": "",
   "labels": null,
