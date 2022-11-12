@@ -59,12 +59,12 @@ spec:
         type: persistent-claim
         size: 10Gi
         deleteClaim: false
-        class: openebs-device
+        class: openebs-hostpath
       - id: 1
         type: persistent-claim
         size: 10Gi
         deleteClaim: false
-        class: openebs-device
+        class: openebs-hostpath
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -77,7 +77,7 @@ spec:
       type: persistent-claim
       size: 10Gi
       deleteClaim: false
-      class: openebs-device
+      class: openebs-hostpath
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
