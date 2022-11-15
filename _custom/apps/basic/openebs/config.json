@@ -1,0 +1,10 @@
+{
+  "appName": "openebs",
+  "userGivenName": "openebs",
+  "destNamespace": "openebs",
+  "srcPath": "_custom/apps/basic/openebs/",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}
