@@ -15,29 +15,29 @@ spec:
         port: 9093
         type: internal
         tls: true
-      #- name: extplain
-      #  port: 9094
-      #  type: loadbalancer
-      #  tls: false
-        configuration:
+      - name: extplain
+        port: 9094
+        type: loadbalancer
+        tls: false
+        overrides:
           bootstrap:
-            annotations:
+            dnsAnnotations:
               external-dns.alpha.kubernetes.io/hostname: kafka-bootstrap.infra.k8s.templarfelix.com
               external-dns.alpha.kubernetes.io/ttl: "60"
               external-dns.alpha.kubernetes.io/access: "private"
           brokers:
             - broker: 0
-              annotations:
+              dnsAnnotations:
                 external-dns.alpha.kubernetes.io/hostname: kafka-broker-0.infra.k8s.templarfelix.com
                 external-dns.alpha.kubernetes.io/ttl: "60"
                 external-dns.alpha.kubernetes.io/access: "private"
             - broker: 1
-              annotations:
+              dnsAnnotations:
                 external-dns.alpha.kubernetes.io/hostname: kafka-broker-1.infra.k8s.templarfelix.com
                 external-dns.alpha.kubernetes.io/ttl: "60"
                 external-dns.alpha.kubernetes.io/access: "private"
             - broker: 2
-              annotations:
+              dnsAnnotations:
                 external-dns.alpha.kubernetes.io/hostname: kafka-broker-2.infra.k8s.templarfelix.com
                 external-dns.alpha.kubernetes.io/ttl: "60"
                 external-dns.alpha.kubernetes.io/access: "private"
