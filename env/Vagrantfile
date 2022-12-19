@@ -9,7 +9,7 @@ SCRIPT
 Vagrant.configure("2") do |config|
 
   config.vagrant.plugins = "vagrant-libvirt"
-  config.vm.box = "alvistack/kubernetes-1.25"
+  config.vm.box = "alvistack/kubernetes-1.26"
   config.nfs.verify_installed = false
   config.vm.synced_folder '.', '/vagrant', type: 'rsync', rsync__exclude: ".git/", disabled: false
 
