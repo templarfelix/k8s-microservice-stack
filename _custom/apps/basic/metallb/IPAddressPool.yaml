@@ -1,8 +1,8 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: cheap
-  namespace: metallb-system
+  name: pool
+  namespace: metallb
 spec:
   addresses:
   - 172.168.10.0/24
