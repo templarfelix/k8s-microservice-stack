@@ -5,4 +5,5 @@ metadata:
   namespace: metallb
 spec:
   addresses:
-  - 192.169.0.0/16
+  - 192.169.1.240-192.169.1.250
+  #- 192.169.0.0/16
