@@ -7,3 +7,6 @@ helmCharts:
   releaseName: metallb
   version: 0.13.7
   repo: https://metallb.github.io/metallb
+
+resources:
+- IPAddressPool.yaml
