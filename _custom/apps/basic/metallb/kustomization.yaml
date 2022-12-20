@@ -7,9 +7,3 @@ helmCharts:
   releaseName: metallb
   version: 0.13.7
   repo: https://metallb.github.io/metallb
-  valuesInline:
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 172.168.28.10-172.168.28.40
