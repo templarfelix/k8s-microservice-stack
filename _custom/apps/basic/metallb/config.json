@@ -1,7 +1,7 @@
 {
   "appName": "metallb",
   "userGivenName": "metallb",
-  "destNamespace": "metallb",
+  "destNamespace": "metallb-system",
   "srcPath": "_custom/apps/basic/metallb/",
   "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
   "srcTargetRevision": "",
