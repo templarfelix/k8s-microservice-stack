@@ -31,7 +31,6 @@ Vagrant.configure("2") do |config|
     argo.vm.provision "shell", inline: $init, privileged: false
 
     argo.vm.provider :libvirt do |libvirt|
-      libvirt.host = "argo.k8s.templarfelix.local"
       #libvirt.cpu_mode = 'host-passthrough'
       libvirt.cpus = 8
       libvirt.disk_bus = 'virtio'
@@ -53,7 +52,6 @@ Vagrant.configure("2") do |config|
     infra.vm.provision "shell", inline: $init, privileged: false
 
     infra.vm.provider :libvirt do |libvirt|
-      libvirt.host = "infra.k8s.templarfelix.local"
       #libvirt.cpu_mode = 'host-passthrough'
       libvirt.cpus = 8
       libvirt.disk_bus = 'virtio'
@@ -76,7 +74,6 @@ Vagrant.configure("2") do |config|
     client.vm.provision "shell", inline: $cilium, privileged: false
 
     client.vm.provider :libvirt do |libvirt|
-      libvirt.host = "client-demo-sa-east-1.k8s.templarfelix.local"
       #libvirt.cpu_mode = 'host-passthrough'
       libvirt.cpus = 8
       libvirt.disk_bus = 'virtio'
@@ -99,7 +96,6 @@ Vagrant.configure("2") do |config|
     client.vm.provision "shell", inline: $cilium, privileged: false
 
     client.vm.provider :libvirt do |libvirt|
-      libvirt.host = "client-demo-us-east-1.k8s.templarfelix.local"
       #libvirt.cpu_mode = 'host-passthrough'
       libvirt.cpus = 8
       libvirt.disk_bus = 'virtio'
