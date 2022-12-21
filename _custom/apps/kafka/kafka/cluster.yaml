@@ -21,23 +21,19 @@ spec:
         tls: false
         configuration:
           bootstrap:
-            host: kafka-bootstrap.mydomain.com
             annotations:
               external-dns.alpha.kubernetes.io/hostname: kafka-bootstrap.mydomain.com.
               external-dns.alpha.kubernetes.io/ttl: "60"
           brokers:
           - broker: 0
-            host: kafka-broker-0.mydomain.com
             annotations:
               external-dns.alpha.kubernetes.io/hostname: kafka-broker-0.mydomain.com.
               external-dns.alpha.kubernetes.io/ttl: "60"
           - broker: 1
-            host: kafka-broker-1.mydomain.com
             annotations:
               external-dns.alpha.kubernetes.io/hostname: kafka-broker-1.mydomain.com.
               external-dns.alpha.kubernetes.io/ttl: "60"
           - broker: 2
-            host: kafka-broker-2.mydomain.com
             annotations:
               external-dns.alpha.kubernetes.io/hostname: kafka-broker-2.mydomain.com.
               external-dns.alpha.kubernetes.io/ttl: "60"
