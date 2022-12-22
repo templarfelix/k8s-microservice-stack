@@ -1,0 +1,10 @@
+{
+  "appName": "metrics-server",
+  "userGivenName": "metrics-server",
+  "destNamespace": "kube-system",
+  "srcPath": "_custom/apps/basic/metrics-server/",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}
