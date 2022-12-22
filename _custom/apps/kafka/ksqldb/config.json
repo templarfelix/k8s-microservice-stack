@@ -1,0 +1,10 @@
+{
+  "appName": "ksqldb",
+  "userGivenName": "ksqldb",
+  "destNamespace": "kafka",
+  "srcPath": "_custom/apps/kafka/ksqldb/",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}
