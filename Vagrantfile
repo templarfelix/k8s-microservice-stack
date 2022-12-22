@@ -6,7 +6,10 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-reload"
   config.vm.box = "generic/fedora37"
   config.vm.provider :vmware_desktop
-  config.vm.network "public_network", ip: "192.168.184.100"
+
+  config.vm.base_mac = "52540089e2f0"
+  config.vm.base_address = "172.16.226.10"
+  
   #config.vm.synced_folder ".", "/home/vagrant/workspace", id: "vagrant", automount: true
   config.vm.provider "vmware_desktop" do |v|
     v.gui = true
@@ -16,7 +19,7 @@ Vagrant.configure("2") do |config|
     v.vmx["numvcpus"] = "16"
     v.vmx["cpuid.coresPerSocket"] = "2"
     v.vmx["vhv.enable"] = "TRUE"
-    v.vmx["virtualhw.version"] = "19"
+    v.vmx["virtualhw.version"] = "20"
     v.vmx["vmx.buildType"] = "release"
   end
 
@@ -82,6 +85,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :reload
 
+  config.vm.provision "shell", privileged: false, path: "dns.sh"
+
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     pwd
     git clone https://github.com/templarfelix-org/k8s-microservice-stack.git
@@ -90,23 +95,23 @@ Vagrant.configure("2") do |config|
     vagrant plugin install vagrant-libvirt
     mkdir -p ~/.kube
     mkdir -p ~/.kube/clusters
-    vagrant ssh argo -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/argo.config
-    vagrant up argocd
+    vagrant up argo
     sleep 5m
-    /home/linuxbrew/.linuxbrew/bin/argocd-autopilot repo bootstrap --recover --kubeconfig  ~/.kube/clusters/argo.config --git-token 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 --repo https://github.com/templarfelix-org/k8s-microservice-stack.git
+    vagrant ssh argo -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/argo.config
+    /home/linuxbrew/.linuxbrew/bin/argocd-autopilot repo bootstrap --recover --kubeconfig  ~/.kube/clusters/argo.config --git-token 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 --repo https://github.com/templarfelix-org/k8s-microservice-stack.git
     vagrant up infra
     sleep 5m
     vagrant ssh infra -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/infra.config
-    #vagrant up client-demo-sa-east-1
-    #vagrant ssh client-demo-sa-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-sa-east-1.config
-    #vagrant up client-demo-us-east-1
-    #vagrant ssh client-demo-us-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-us-east-1.config
-    echo export KUBECONFIG="$(find ~/.kube/clusters -type f | sed ':a;N;s/\n/:/;ba')" >> /home/vagrant/.zshrc
+    vagrant up client-demo-sa-east-1
+    vagrant ssh client-demo-sa-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-sa-east-1.config
+    vagrant up client-demo-us-east-1
+    vagrant ssh client-demo-us-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-us-east-1.config
+
   SHELL
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    # READY ONLY TOKEN
-    echo export GIT_TOKEN="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" >> /home/vagrant/.zshrc
+    echo export KUBECONFIG="$(find ~/.kube/clusters -type f | sed ':a;N;s/\n/:/;ba')" >> /home/vagrant/.zshrc
+    echo export GIT_TOKEN="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" >> /home/vagrant/.zshrc
     echo export GIT_REPO="https://github.com/templarfelix-org/k8s-microservice-stack.git" >> /home/vagrant/.zshrc
   SHELL
 
