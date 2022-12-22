@@ -5,3 +5,5 @@ metadata:
 spec:
   strimziVersion: v1beta2
   listener: tls
+  securityProtocol: tls
+  compatibilityLevel: forward
