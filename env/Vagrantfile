@@ -32,11 +32,11 @@ Vagrant.configure("2") do |config|
 
     argo.vm.provider :libvirt do |libvirt|
       #libvirt.cpu_mode = 'host-passthrough'
-      libvirt.cpus = 8
+      libvirt.cpus = 4
       libvirt.disk_bus = 'virtio'
       libvirt.disk_driver :cache => 'writeback'
       libvirt.driver = 'kvm'
-      libvirt.memory = 16384
+      libvirt.memory = 8192
       #libvirt.memorybacking :access, :mode => 'shared'
       libvirt.nested = true
       libvirt.nic_model_type = 'virtio'
@@ -57,7 +57,7 @@ Vagrant.configure("2") do |config|
       libvirt.disk_bus = 'virtio'
       libvirt.disk_driver :cache => 'writeback'
       libvirt.driver = 'kvm'
-      libvirt.memory = 16384
+      libvirt.memory = 32768
       #libvirt.memorybacking :access, :mode => 'shared'
       libvirt.nested = true
       libvirt.nic_model_type = 'virtio'
