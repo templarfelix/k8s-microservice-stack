@@ -4,4 +4,4 @@ metadata:
   name: confluent-schema-registry
 spec:
   strimziVersion: v1beta2
-  listener: plain
+  listener: tls
