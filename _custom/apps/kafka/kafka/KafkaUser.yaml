@@ -15,18 +15,14 @@ spec:
           name: registry-schemas
           patternType: literal
         operations:
-          - Create
-          - Describe
-          - Write
+          - All
         host: "*"
       - resource:
           type: group
           name: schema-registry
           patternType: prefix
         operations:
-          - Create
-          - Describe
-          - Write
+          - All
         host: "*"
       - resource:
           type: topic
