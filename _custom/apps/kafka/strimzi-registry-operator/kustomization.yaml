@@ -10,3 +10,4 @@ helmCharts:
   valuesInline:
     clusterName: "kafka-cluster"
     clusterNamespace: "kafka"
+    operatorNamespace: "kafka"
