@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+helmCharts:
+- name: strimzi-registry-operator
+  namespace: strimzi-registry-operator
+  includeCRDs: true
+  releaseName: strimzi-registry-operator
+  version: 2.1.0
+  repo: https://lsst-sqre.github.io/charts/
+  valuesInline:
+    registry: txt

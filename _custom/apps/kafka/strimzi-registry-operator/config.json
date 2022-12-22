@@ -1,0 +1,10 @@
+{
+  "appName": "strimzi-registry-operator",
+  "userGivenName": "strimzi-registry-operator",
+  "destNamespace": "kafka",
+  "srcPath": "_custom/apps/basic/strimzi-registry-operator/",
+  "srcRepoURL": "https://github.com/templarfelix-org/k8s-microservice-stack.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}
