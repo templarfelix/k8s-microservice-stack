@@ -13,11 +13,12 @@ helmCharts:
     txtPrefix: "external-dns-"
     provider: rfc2136
     domainFilters:
-      - k8s.templarfelix.com
+      - templarfelix.local
     sources:
       - service
       - ingress
     extraArgs:
+      - --rfc2136-host=192.168.0.1
       - --rfc2136-host=172.16.226.10
       - --rfc2136-port=53
       - --rfc2136-zone=templarfelix.local
