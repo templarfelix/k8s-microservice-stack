@@ -11,4 +11,4 @@ helmCharts:
     kafka:
       create: false
     configMapPairs:
-      KSQL_BOOTSTRAP_SERVERS: kafka-cluster-kafka-0.kafka.svc.cluster.local:9092;kafka-cluster-kafka-1.kafka.svc.cluster.local:9092;kafka-cluster-kafka-3.kafka.svc.cluster.local:9092
+      KSQL_BOOTSTRAP_SERVERS: kafka-cluster-kafka-0.kafka.svc.cluster.local:9092,kafka-cluster-kafka-1.kafka.svc.cluster.local:9092,kafka-cluster-kafka-3.kafka.svc.cluster.local:9092
