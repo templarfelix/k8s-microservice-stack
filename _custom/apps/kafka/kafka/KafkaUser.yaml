@@ -18,7 +18,7 @@ spec:
           - Create
           - Describe
           - Write
-        type: allow
+        host: "*"
       - resource:
           type: group
           name: schema-registry
@@ -27,11 +27,11 @@ spec:
           - Create
           - Describe
           - Write
-        type: allow
+        host: "*"
       - resource:
           type: topic
           name: __consumer_offsets
           patternType: literal
         operations:
           - Describe
-        type: allow
+        host: "*"
