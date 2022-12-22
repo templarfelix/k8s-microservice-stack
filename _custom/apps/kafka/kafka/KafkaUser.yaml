@@ -6,7 +6,7 @@ metadata:
     strimzi.io/cluster: kafka-cluster
 spec:
   authentication:
-    type: plain
+    type: tls
   authorization:
     type: simple
     acls:
