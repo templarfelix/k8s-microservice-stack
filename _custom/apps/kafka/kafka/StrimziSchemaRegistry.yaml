@@ -3,4 +3,5 @@ kind: StrimziSchemaRegistry
 metadata:
   name: confluent-schema-registry
 spec:
-  listener: tls
+  strimziVersion: v1beta2
+  listener: plain
