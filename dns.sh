@@ -18,6 +18,7 @@ sudo systemctl restart dnsmasq
 ## REMOVER WORKARROUND O DNS RESOLVER
 sudo rm -rf /etc/resolv.conf
 cat <<EOF | sudo tee -a /etc/resolv.conf
+nameserver 127.0.0.53
 nameserver 172.16.226.10
 EOF
 
@@ -57,12 +58,3 @@ cat <<EOF | sudo tee -a /var/named/templarfelix.k8s.zone
 @      IN NS server
 server IN A  192.168.184.131
 EOF
-
-sudo systemctl restart named
-sudo systemctl restart dnsmasq
-
-nslookup server.templarfelix.k8s
-nslookup kafka-broker-0.templarfelix.k8s.
-
-ping server.templarfelix.k8s
-ping kafka-broker-0.templarfelix.k8s
