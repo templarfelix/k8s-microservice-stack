@@ -8,4 +8,5 @@ helmCharts:
   version: 2.1.0
   repo: https://lsst-sqre.github.io/charts/
   valuesInline:
-    registry: txt
+    clusterName: "kafka-cluster"
+    clusterNamespace: "kafka"
