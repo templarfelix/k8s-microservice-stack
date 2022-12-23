@@ -3,8 +3,12 @@ pwd
 git clone https://github.com/templarfelix-org/k8s-microservice-stack.git
 cd k8s-microservice-stack
 cd env
+pwd
+
 vagrant plugin install vagrant-libvirt
 vagrant up
+pwd
+
 sleep 5m
 
 mkdir -p ~/.kube

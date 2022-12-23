@@ -34,23 +34,29 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell do |s|
     s.privileged = true
-    s.path = 'vagrant/scripts/fedora/config.sh'
+    s.path = 'vagrant/scripts/fedora/virtualization.sh'
   end
 
   config.vm.provision :shell do |s|
+    s.privileged = false
     s.path = 'vagrant/scripts/fedora/brew.sh'
   end
 
   config.vm.provision :reload
 
-  config.vm.provision "shell", privileged: false, path: "vagrant/scripts/dns.sh"
+  config.vm.provision :shell do |s|
+    s.privileged = false
+    s.path = 'vagrant/scripts/dns.sh'
+  end
 
   config.vm.provision :shell do |s|
+    s.privileged = false
     s.env = {GIT_TOKEN:ENV['GIT_TOKEN'], GIT_REPO:ENV['GIT_REPO']}
     s.path = 'vagrant/scripts/k8s.sh'
   end
 
   config.vm.provision :shell do |s|
+    s.privileged = false
     s.env = {GIT_TOKEN:ENV['GIT_TOKEN'], GIT_REPO:ENV['GIT_REPO']}
     s.path = 'vagrant/scripts/envs.sh'
   end
