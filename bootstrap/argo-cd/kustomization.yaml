@@ -21,6 +21,6 @@ secretGenerator:
 kind: Kustomization
 namespace: argocd
 resources:
-- github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.8
+- github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.10
 patchesStrategicMerge:
 - argo-notifications-cm.yaml
