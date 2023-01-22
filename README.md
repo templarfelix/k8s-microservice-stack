@@ -114,6 +114,7 @@ templarfelix/monitoring-client="true"
 templarfelix/third-party="true" 
 templarfelix/kafka="true"
 templarfelix/microservices="true" 
+templarfelix/mesh="true" 
 ```
 
 # Get grafana auth
