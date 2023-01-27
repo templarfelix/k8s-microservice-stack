@@ -69,5 +69,6 @@ Vagrant.configure("2") do |config|
     #/home/linuxbrew/.linuxbrew/bin/argocd cluster add $( /home/linuxbrew/.linuxbrew/bin/kubectl config current-context --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config  ) --name client-demo-sa-east-1 --yes --annotation cluster=client-demo-sa-east-1 --label templarfelix/mesh=true  --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-sa-east-1.config 
     #/home/linuxbrew/.linuxbrew/bin/argocd cluster add $( /home/linuxbrew/.linuxbrew/bin/kubectl config current-context --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config  ) --name client-demo-us-east-1 --yes --annotation cluster=client-demo-us-east-1 --label templarfelix/mesh=true  --label templarfelix/monitoring-client=true --label templarfelix/third-party=true --label templarfelix/microservices=true  --kubeconfig ~/.kube/clusters/client-demo-us-east-1.config 
   SHELL
+  
 
 end
