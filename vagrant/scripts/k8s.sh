@@ -1,6 +1,6 @@
 #!/bin/sh
 pwd
-git clone https://github.com/templarfelix-org/k8s-microservice-stack.git
+git clone https://github.com/templarfelix/k8s-microservice-stack.git
 cd k8s-microservice-stack
 cd env
 pwd
