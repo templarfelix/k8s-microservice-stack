@@ -22,6 +22,9 @@ nameserver 127.0.0.53
 nameserver 172.16.226.10
 EOF
 
+## lock file
+sudo chattr +i /etc/resolv.conf
+
 cat <<EOF | sudo tee -a /etc/named.conf
 include "/etc/named.k8s.zones";
 EOF
