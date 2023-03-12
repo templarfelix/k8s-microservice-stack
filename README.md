@@ -2,15 +2,20 @@
 
 ## _A Complete Microservice Stack for Kubernetes_
 
-> The ideia of this project is simulate 3 enviroments 2 for clientes and one for infra tools  
+> The ideia of this project is simulate 3 enviroments 2 for client and one for infra tools
 > This project use ArgoCD for install applications on enviroments  
-> cluster argo: 
-> cluster infra: receive kafka and all monitoring tools
-> clusters client-demo-sa-east-1 & client-demo-us-east-1: receive 
+> kubernetes cluster argo: cluster used for argocd deployment
+> kubernetes cluster infra: receive kafka and all monitoring tools
+> kubernetes clusters client-demo-sa-east-1: receive microservices and monitoring tools for simulate a region SA
+> kubernetes clusters client-demo-us-east-1: receive microservices and monitoring tools for simulate a region US
 
 # This project use
 
 ## Infra
+
+### Vmware
+[Vmware Workstation](https://www.vmware.com/br/products/workstation-pro.html)
+
 ### Vagrant
 [Alvistack Kubernetes 1.25](https://github.com/alvistack/vagrant-kubernetes/)
 
@@ -29,52 +34,29 @@
 [Istio](https://github.com/istio/istio/)
 [Keda](https://github.com/kedacore/keda/)
 [OpentenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator/)
+#### Event Streaming
 [Strimzi](https://github.com/strimzi/strimzi-kafka-operator/)
 
- 
 ### Test
 [Kafka Stress](https://github.com/msfidelis/kafka-stress)
 
 # pre-setup
 
-## SETUP LINUX(FEDORA) FOR K8S
+## SETUP Variables
+GIT_REPO a Fork url for this repositorie
+GIT_TOKEN a Token for argocd get resources from git
+
+Make sure to have a [valid token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+examples:
 ```bash
-sudo sysctl  fs.inotify.max_queued_events=1048576
-sudo sysctl  fs.inotify.max_user_instances=1048576
-sudo sysctl  fs.inotify.max_user_watches=1048576
-sudo sysctl -p
+export GIT_REPO = https://github.com/templarfelix/k8s-microservice-stack.git
+export GIT_TOKEN = xxxxx
 ```
 
 ## INSTALL VAGRANT on FEDORA
 ```bash
-sudo dnf install vagrant
-vagrant plugin install vagrant-libvirt
-```
 
-## INSTALL libvirt ON FEDORA
-```bash
-dependencies=$(sudo dnf repoquery --qf "%{name}" $(for dep in $(sudo dnf repoquery --depends vagrant-libvirt 2>/dev/null | cut -d' ' -f1); do echo "--whatprovides ${dep} "; done) 2>/dev/null)
-sudo dnf install @virtualization ${dependencies}
-sudo dnf remove vagrant-libvirt
-sudo systemctl enable --now libvirtd
-sudo usermod -a -G libvirt $USER
-```
-
-## SETUP ENV
-```bash
-## TODO
-```
-
-# GET K8S CREDENTIALS
-```bash
-mkdir -p ~/.kube
-mkdir -p ~/.kube/clusters
-vagrant ssh argo -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/argo.config
-vagrant ssh infra -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/infra.config
-vagrant ssh client-demo-sa-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-sa-east-1.config
-vagrant ssh client-demo-us-east-1 -c "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/clusters/client-demo-us-east-1.config
-
-export KUBECONFIG=$(find ~/.kube/clusters -type f | sed ':a;N;s/\n/:/;ba')
 ```
 
 # INSTALL THIS PROJECT USING ARGOCD AUTOPILOT
